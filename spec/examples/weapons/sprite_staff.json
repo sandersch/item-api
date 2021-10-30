@@ -1,0 +1,21 @@
+{
+  "category": "weapon",
+  "name": "marred runestaff",
+  "noun": "runestaff",
+  "base": "runestaff",
+  "material": "orase",
+  "weight": 4,
+  "enchant": "35",
+  "ensorcell": 4,
+  "primary_property": {
+    "effect": "flare",
+    "kind": "acuity",
+    "amount": 7
+  },
+  "script": {
+    "name": "Sprite Weapon"
+  },
+
+  "loresong_unlocked": true,
+  "sanctified": false
+}

@@ -1,0 +1,40 @@
+{
+  "category": "armor",
+  "name": "some faded cerulean leathers",
+  "noun": "leathers",
+  "asg": 8,
+  "weight": 8,
+  "enchant": 50,
+  "ensorcell": 0,
+  "critical_services": 370,
+  "enhancive": {
+    "persists": true,
+    "rechargable": true,
+    "properties": [
+      {
+        "attribute": "Spirit Recovery",
+        "amount": 1
+      },
+      {
+        "attribute": "Max Spirit",
+        "amount": 1
+      }
+    ],
+    "resistances": [
+      {
+        "kind": "slash",
+        "amount": 40
+      },
+      {
+        "kind": "crush",
+        "amount": 20
+      },
+      {
+        "kind": "acid",
+        "amount": 10
+      }
+    ]
+  },
+  "sanctified": false,
+  "loresong_unlocked": false
+}

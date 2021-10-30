@@ -1,0 +1,11 @@
+{
+  "category": "clothing",
+  "name": "purple-veined black leather backpack",
+  "noun": "backpack",
+  "material": "leather",
+  "weight": 4,
+  "capacity": 200,
+  "script": {
+    "name": "purple veined backpack"
+  }
+}

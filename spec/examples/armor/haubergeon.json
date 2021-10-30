@@ -1,0 +1,48 @@
+{
+  "category": "armor",
+  "name": "gleaming silvery vultite haubergeon",
+  "noun": "haubergeon",
+  "asg": 15,
+  "material": "vultite",
+  "weight": 13,
+  "enchant": 46,
+  "ensorcell": 5,
+  "primary_property": {
+    "effect": "flare",
+    "kind": "grapple"
+  },
+  "critical_services": 340,
+  "damage_services": 150,
+  "enhancive": {
+    "persists": true,
+    "rechargable": true,
+    "properties": [
+      {
+        "attribute": "stamina recovery",
+        "amount": 5,
+        "minimum_level": 20
+      },
+      {
+        "attribute": "mana recovery",
+        "amount": 3,
+        "minimum_level": 12
+      }
+    ],
+    "resistances": [
+      {
+        "kind": "puncture",
+        "amount": 40
+      },
+      {
+        "kind": "crush",
+        "amount": 25
+      },
+      {
+        "kind": "impact",
+        "amount": 10
+      }
+    ]
+  },
+  "sanctified": false,
+  "loresong_unlocked": false
+}

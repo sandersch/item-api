@@ -1,0 +1,37 @@
+{
+  "category": "weapon",
+  "name": "perfect mithril lance",
+  "noun": "lance",
+  "base": "lance",
+  "material": "mithril",
+  "weight": 8,
+  "enchant": 50,
+  "ensorcell": 5,
+  "primary_propery": {
+    "effect": "flare",
+    "kind": "dispel",
+    "amount": 2
+  },
+  "critical_services": 160,
+  "forge": {
+    "quality": "perfect",
+    "crafter": "Hatouk"
+  },
+  "script": {
+    "name": "Bubble Flares",
+    "properties": [
+      {
+        "effect": "flare",
+        "kind": "bubble",
+        "amount": 20
+      }
+    ]
+  },
+  "bane": {
+    "against": "undead",
+    "effect": "bonus",
+    "kind": "offensive",
+    "amount": 10
+  },
+  "sanctified": false
+}
