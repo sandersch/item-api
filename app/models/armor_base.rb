@@ -1,0 +1,2 @@
+class ArmorBase < ApplicationRecord
+end
