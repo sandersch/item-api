@@ -52,6 +52,11 @@ Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |
     damage_services: 150,
     item_property: ItemProperty.new(effect: "flare", kind: "grapple")
   )
+  item.resistances.tap do |r|
+    r.find_or_initialize_by(kind: "puncture").amount = 40
+    r.find_or_initialize_by(kind: "crush").amount    = 25
+    r.find_or_initialize_by(kind: "impact").amount   = 10
+  end
   item.update!(
     weight: 13,
     noun: "haubergeon",
@@ -134,5 +139,16 @@ Item.find_or_initialize_by(name: "silvery imflass arm greaves").tap do |item|
     weight: 3,
     noun: "greaves",
     long_description: "some silvery imflass arm greaves inset with angular bluish mithril runes",
+  )
+end
+
+Item.find_or_initialize_by(name: "purple-veined black leather backpack").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    capacity: 200
+  )
+  item.update!(
+    noun: "backpack",
+    weight: 4,
   )
 end
