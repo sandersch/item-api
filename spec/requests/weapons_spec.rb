@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/weapon_details", type: :request do
+RSpec.describe "/weapons", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # WeaponDetail. As you add validations to WeaponDetail, be sure to
+  # Weapon. As you add validations to Weapon, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/weapon_details", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # WeaponDetailsController, or in your router and rack
+  # WeaponsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/weapon_details", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      WeaponDetail.create! valid_attributes
-      get weapon_details_url, headers: valid_headers, as: :json
+      Weapon.create! valid_attributes
+      get weapons_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      weapon_detail = WeaponDetail.create! valid_attributes
-      get weapon_detail_url(weapon_detail), as: :json
+      weapon = Weapon.create! valid_attributes
+      get weapon_url(weapon), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new WeaponDetail" do
+      it "creates a new Weapon" do
         expect {
-          post weapon_details_url,
-               params: { weapon_detail: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(WeaponDetail, :count).by(1)
+          post weapons_url,
+               params: { weapon: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Weapon, :count).by(1)
       end
 
-      it "renders a JSON response with the new weapon_detail" do
-        post weapon_details_url,
-             params: { weapon_detail: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new weapon" do
+        post weapons_url,
+             params: { weapon: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new WeaponDetail" do
+      it "does not create a new Weapon" do
         expect {
-          post weapon_details_url,
-               params: { weapon_detail: invalid_attributes }, as: :json
-        }.to change(WeaponDetail, :count).by(0)
+          post weapons_url,
+               params: { weapon: invalid_attributes }, as: :json
+        }.to change(Weapon, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new weapon_detail" do
-        post weapon_details_url,
-             params: { weapon_detail: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new weapon" do
+        post weapons_url,
+             params: { weapon: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -88,28 +88,28 @@ RSpec.describe "/weapon_details", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested weapon_detail" do
-        weapon_detail = WeaponDetail.create! valid_attributes
-        patch weapon_detail_url(weapon_detail),
-              params: { weapon_detail: new_attributes }, headers: valid_headers, as: :json
-        weapon_detail.reload
+      it "updates the requested weapon" do
+        weapon = Weapon.create! valid_attributes
+        patch weapon_url(weapon),
+              params: { weapon: new_attributes }, headers: valid_headers, as: :json
+        weapon.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the weapon_detail" do
-        weapon_detail = WeaponDetail.create! valid_attributes
-        patch weapon_detail_url(weapon_detail),
-              params: { weapon_detail: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the weapon" do
+        weapon = Weapon.create! valid_attributes
+        patch weapon_url(weapon),
+              params: { weapon: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the weapon_detail" do
-        weapon_detail = WeaponDetail.create! valid_attributes
-        patch weapon_detail_url(weapon_detail),
-              params: { weapon_detail: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the weapon" do
+        weapon = Weapon.create! valid_attributes
+        patch weapon_url(weapon),
+              params: { weapon: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -117,11 +117,11 @@ RSpec.describe "/weapon_details", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested weapon_detail" do
-      weapon_detail = WeaponDetail.create! valid_attributes
+    it "destroys the requested weapon" do
+      weapon = Weapon.create! valid_attributes
       expect {
-        delete weapon_detail_url(weapon_detail), headers: valid_headers, as: :json
-      }.to change(WeaponDetail, :count).by(-1)
+        delete weapon_url(weapon), headers: valid_headers, as: :json
+      }.to change(Weapon, :count).by(-1)
     end
   end
 end

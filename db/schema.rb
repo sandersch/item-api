@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_051453) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "weapon_details", force: :cascade do |t|
+  create_table "weapons", force: :cascade do |t|
     t.bigint "weapon_base_id", null: false
     t.string "forge_quality"
     t.integer "enchant"
@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 2021_11_07_051453) do
     t.integer "sighting_services"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["weapon_base_id"], name: "index_weapon_details_on_weapon_base_id"
+    t.index ["weapon_base_id"], name: "index_weapons_on_weapon_base_id"
   end
 
   add_foreign_key "armors", "armor_bases", column: "armor_base_id"
   add_foreign_key "armors", "item_properties"
-  add_foreign_key "weapon_details", "weapon_bases", column: "weapon_base_id"
+  add_foreign_key "weapons", "weapon_bases", column: "weapon_base_id"
 end

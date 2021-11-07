@@ -1,6 +1,6 @@
-class CreateWeaponDetails < ActiveRecord::Migration[6.1]
+class CreateWeapons < ActiveRecord::Migration[6.1]
   def change
-    create_table :weapon_details do |t|
+    create_table :weapons do |t|
       t.references :weapon_base, null: false, foreign_key: true
       t.string :forge_quality
       t.integer :enchant

@@ -75,7 +75,7 @@ end
 
 
 Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
-  klass = WeaponDetail
+  klass = Weapon
   item.details ||= klass.create!(
     weapon_base: WeaponBase.find_by(name: "lance"),
     item_property: ItemProperty.new(effect: "flare", kind: "dispel", amount: 2),
@@ -92,7 +92,7 @@ Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
 end
 
 Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
-  klass = WeaponDetail
+  klass = Weapon
   item.details ||= klass.new(
     weapon_base: WeaponBase.find_by(name: "runestaff"),
     enchant: 35,
