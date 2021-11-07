@@ -33,28 +33,35 @@
   base.update!(attrs)
 end
 
-haubergeon = Item.create!(
-  details: ArmorDetail.create!(
-    item_property: nil,
-    armor_base: ArmorBase.find(16),
+haubergeon = Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon")
+if haubergeon.new_record? || !haubergeon.details
+  details = ArmorDetail.new(
+    armor_base_id: 15,
     enchant: 45,
     ensorcell: 5,
-    sanctify: 0,
-  ),
-  weight: 12,
+    critical_services: 340,
+    damage_services: 150,
+  )
+  details.item_property = ItemProperty.new(effect: "flare", kind: "grapple")
+  details.save
+  haubergeon.details = details
+end
+haubergeon.update!(
+  weight: 13,
   noun: "haubergeon",
-  name: "gleaming vultite haubergeon",
 )
 
-leather = Item.create!(
-  details: ArmorDetail.create!(
+leather = Item.find_or_initialize_by(name: "some faded cerulean leathers")
+if leather.new_record? || !leather.details
+  leather.details = ArmorDetail.create!(
     item_property: nil,
-    armor_base: ArmorBase.find(8),
+    armor_base_id: 8,
     enchant: 50,
-    ensorcell: 1,
-    sanctify: 0,
-  ),
+    ensorcell: 0,
+    critical_services: 370,
+  )
+end
+leather.update!(
   weight: 8,
   noun: "leather",
-  name: "some cerulean double leather",
 )

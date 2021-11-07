@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_044949) do
     t.integer "enchant"
     t.integer "ensorcell"
     t.integer "sanctify"
-    t.integer "critial_services"
+    t.integer "critical_services"
     t.integer "damage_services"
     t.integer "sighting_services"
     t.datetime "loresong_unlocked"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_044949) do
     t.string "name"
     t.string "long_description"
     t.string "show_description"
+    t.datetime "loresong_unlocked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["details_type", "details_id"], name: "index_items_on_details"
