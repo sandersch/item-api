@@ -103,6 +103,21 @@ Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
   item.details.save!
   item.update!(
     weight: 4,
+    noun: "runestaff",
     loresong_unlocked: true,
+  )
+end
+
+Item.find_or_initialize_by(name: "embossed mesille aegis").tap do |item|
+  klass = Shield
+  item.details ||= klass.new(
+    size: "large",
+    enchant: 36,
+    ensorcell: 5,
+    item_property: ItemProperty.new(effect: "bonus", kind: "target_defense", amount: 10)
+  )
+  item.update!(
+    weight: 9,
+    noun: "aegis",
   )
 end

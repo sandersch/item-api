@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_014350) do
+ActiveRecord::Schema.define(version: 2021_11_07_050628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 2021_11_07_014350) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["details_type", "details_id"], name: "index_items_on_details"
+  end
+
+  create_table "shields", force: :cascade do |t|
+    t.string "size"
+    t.integer "enchant"
+    t.integer "ensorcell"
+    t.integer "sanctify"
+    t.integer "critical_services"
+    t.integer "damage_services"
+    t.integer "sighting_services"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "weapon_bases", force: :cascade do |t|

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shields
   resources :weapons
   resources :armor
   resources :armor_bases
