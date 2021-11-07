@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_044949) do
+ActiveRecord::Schema.define(version: 2021_11_07_004958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2021_11_06_044949) do
     t.integer "critical_services"
     t.integer "damage_services"
     t.integer "sighting_services"
-    t.datetime "loresong_unlocked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["armor_base_id"], name: "index_armor_details_on_armor_base_id"
@@ -62,10 +61,22 @@ ActiveRecord::Schema.define(version: 2021_11_06_044949) do
     t.string "name"
     t.string "long_description"
     t.string "show_description"
-    t.datetime "loresong_unlocked"
+    t.boolean "loresong_unlocked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["details_type", "details_id"], name: "index_items_on_details"
+  end
+
+  create_table "weapon_bases", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.integer "weight"
+    t.integer "base_speed"
+    t.integer "minimum_speed"
+    t.decimal "damage_factor", precision: 4, scale: 3
+    t.integer "avd"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "armor_details", "armor_bases", column: "armor_base_id"

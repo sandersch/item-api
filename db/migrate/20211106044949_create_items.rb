@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :long_description
       t.string :show_description
-      t.timestamp :loresong_unlocked
+      t.boolean :loresong_unlocked
 
       t.timestamps
     end
