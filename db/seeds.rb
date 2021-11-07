@@ -121,3 +121,18 @@ Item.find_or_initialize_by(name: "embossed mesille aegis").tap do |item|
     noun: "aegis",
   )
 end
+
+Item.find_or_initialize_by(name: "silvery imflass arm greaves").tap do |item|
+  klass = ArmorAccessory
+  item.details ||= klass.new(
+    kind: "arm_greaves",
+    item_property: ItemProperty.new(effect: "flare", kind: "lightning"),
+    critical_services: 10,
+    damage_services: 10,
+  )
+  item.update!(
+    weight: 3,
+    noun: "greaves",
+    long_description: "some silvery imflass arm greaves inset with angular bluish mithril runes",
+  )
+end
