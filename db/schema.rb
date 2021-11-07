@@ -73,8 +73,6 @@ ActiveRecord::Schema.define(version: 2021_11_07_004958) do
     t.integer "weight"
     t.integer "base_speed"
     t.integer "minimum_speed"
-    t.decimal "damage_factor", precision: 4, scale: 3
-    t.integer "avd"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

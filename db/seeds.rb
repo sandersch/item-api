@@ -34,16 +34,17 @@
 end
 
 [
-  { name: "dagger",     category: "edged",      damage_factor: "0.250", avd: 25, base_speed: 1, minimum_speed: 3, weight: 1 },
-  { name: "lance",      category: "polearm",    damage_factor: "0.725", avd: 35, base_speed: 9, minimum_speed: 5, weight: 15 },
-  { name: "runestaff",  category: "runestaff",  damage_factor: "0.250", avd: 10, base_speed: 6, minimum_speed: 5, weight: 15 },
+  { name: "dagger",     category: "edged",      base_speed: 1, minimum_speed: 3, weight: 1  },
+  { name: "lance",      category: "polearm",    base_speed: 9, minimum_speed: 5, weight: 15 },
+  { name: "runestaff",  category: "runestaff",  base_speed: 6, minimum_speed: 5, weight: 15 },
 ].each do |attrs|
   base = WeaponBase.find_or_initialize_by(name: attrs[:name])
   base.update!(attrs)
 end
 
-haubergeon = Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon")
-haubergeon.details ||= ArmorDetail.new(
+Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |item|
+  klass = ArmorDetail
+  item.details ||= klass.new(
     armor_base_id: 15,
     enchant: 45,
     ensorcell: 5,
@@ -51,13 +52,11 @@ haubergeon.details ||= ArmorDetail.new(
     damage_services: 150,
     item_property: ItemProperty.new(effect: "flare", kind: "grapple")
   )
-  #details.item_property = 
-  #details.save
-  #haubergeon.details = details
-haubergeon.update!(
-  weight: 13,
-  noun: "haubergeon",
-)
+  item.update!(
+    weight: 13,
+    noun: "haubergeon",
+  )
+end
 
 leather = Item.find_or_initialize_by(name: "some faded cerulean leathers")
 if leather.new_record? || !leather.details
