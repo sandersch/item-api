@@ -58,17 +58,51 @@ Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |
   )
 end
 
-leather = Item.find_or_initialize_by(name: "some faded cerulean leathers")
-if leather.new_record? || !leather.details
-  leather.details = ArmorDetail.create!(
+Item.find_or_initialize_by(name: "some faded cerulean leathers").tap do |item|
+  klass = ArmorDetail
+  item.details ||= klass.new(
     item_property: nil,
     armor_base_id: 8,
     enchant: 50,
     ensorcell: 0,
     critical_services: 370,
   )
+  item.update!(
+    weight: 8,
+    noun: "leather",
+  )
 end
-leather.update!(
-  weight: 8,
-  noun: "leather",
-)
+
+
+Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
+  klass = WeaponDetail
+  item.details ||= klass.create!(
+    weapon_base: WeaponBase.find_by(name: "lance"),
+    item_property: ItemProperty.new(effect: "flare", kind: "dispel", amount: 2),
+    enchant: 50,
+    ensorcell: 5,
+    critical_services: 160,
+    forge_quality: "perfect",
+    sanctify: 5,
+  )
+  item.update!(
+    weight: 8,
+    noun: "lance",
+  )
+end
+
+Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
+  klass = WeaponDetail
+  item.details ||= klass.new(
+    weapon_base: WeaponBase.find_by(name: "runestaff"),
+    enchant: 35,
+    ensorcell: 4,
+  ).tap do |d| 
+  end
+  item.details.build_item_property(effect: "flare", kind: "acuity", amount: 7)
+  item.details.save!
+  item.update!(
+    weight: 4,
+    loresong_unlocked: true,
+  )
+end

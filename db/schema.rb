@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_004958) do
+ActiveRecord::Schema.define(version: 2021_11_07_014350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,21 @@ ActiveRecord::Schema.define(version: 2021_11_07_004958) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "weapon_details", force: :cascade do |t|
+    t.bigint "weapon_base_id", null: false
+    t.string "forge_quality"
+    t.integer "enchant"
+    t.integer "ensorcell"
+    t.integer "sanctify"
+    t.integer "critical_services"
+    t.integer "damage_services"
+    t.integer "sighting_services"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["weapon_base_id"], name: "index_weapon_details_on_weapon_base_id"
+  end
+
   add_foreign_key "armor_details", "armor_bases", column: "armor_base_id"
   add_foreign_key "armor_details", "item_properties"
+  add_foreign_key "weapon_details", "weapon_bases", column: "weapon_base_id"
 end
