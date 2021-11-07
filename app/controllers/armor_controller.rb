@@ -3,7 +3,7 @@ class ArmorController < ApplicationController
 
   # GET /armors
   def index
-    @armors = ArmorDetail.all
+    @armors = Armor.all
 
     render json: @armors
   end
@@ -15,7 +15,7 @@ class ArmorController < ApplicationController
 
   # POST /armors
   def create
-    @armor = ArmorDetail.new(armor_params)
+    @armor = Armor.new(armor_params)
 
     if @armor.save
       render json: @armor, status: :created, location: @armor
@@ -41,7 +41,7 @@ class ArmorController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_armor
-      @armor = ArmorDetail.find(params[:id])
+      @armor = Armor.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

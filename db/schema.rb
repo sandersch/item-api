@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_051453) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "armor_details", force: :cascade do |t|
+  create_table "armors", force: :cascade do |t|
     t.bigint "armor_base_id", null: false
     t.bigint "item_property_id"
     t.integer "enchant"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_051453) do
     t.integer "sighting_services"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["armor_base_id"], name: "index_armor_details_on_armor_base_id"
-    t.index ["item_property_id"], name: "index_armor_details_on_item_property_id"
+    t.index ["armor_base_id"], name: "index_armors_on_armor_base_id"
+    t.index ["item_property_id"], name: "index_armors_on_item_property_id"
   end
 
   create_table "item_properties", force: :cascade do |t|
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_051453) do
     t.index ["weapon_base_id"], name: "index_weapon_details_on_weapon_base_id"
   end
 
-  add_foreign_key "armor_details", "armor_bases", column: "armor_base_id"
-  add_foreign_key "armor_details", "item_properties"
+  add_foreign_key "armors", "armor_bases", column: "armor_base_id"
+  add_foreign_key "armors", "item_properties"
   add_foreign_key "weapon_details", "weapon_bases", column: "weapon_base_id"
 end

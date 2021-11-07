@@ -1,6 +1,6 @@
-class CreateArmorDetails < ActiveRecord::Migration[6.1]
+class CreateArmor < ActiveRecord::Migration[6.1]
   def change
-    create_table :armor_details do |t|
+    create_table :armors do |t|
       t.references :armor_base, null: false, foreign_key: true
       t.references :item_property, null: true, foreign_key: true
       t.integer :enchant

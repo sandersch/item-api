@@ -43,7 +43,7 @@ end
 end
 
 Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |item|
-  klass = ArmorDetail
+  klass = Armor
   item.details ||= klass.new(
     armor_base_id: 15,
     enchant: 45,
@@ -59,7 +59,7 @@ Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |
 end
 
 Item.find_or_initialize_by(name: "some faded cerulean leathers").tap do |item|
-  klass = ArmorDetail
+  klass = Armor
   item.details ||= klass.new(
     item_property: nil,
     armor_base_id: 8,
