@@ -72,6 +72,11 @@ Item.find_or_initialize_by(name: "some faded cerulean leathers").tap do |item|
     ensorcell: 0,
     critical_services: 370,
   )
+  item.resistances.tap do |r|
+    r.find_or_initialize_by(kind: "slash").amount = 40
+    r.find_or_initialize_by(kind: "crush").amount = 20
+    r.find_or_initialize_by(kind: "acid").amount  = 10
+  end
   item.update!(
     weight: 8,
     noun: "leather",
