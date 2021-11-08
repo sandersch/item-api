@@ -60,6 +60,7 @@ Item.find_or_initialize_by(name: "gleaming silvery vultite haubergeon").tap do |
   item.update!(
     weight: 13,
     noun: "haubergeon",
+    material: "vultite",
   )
 end
 
@@ -88,6 +89,7 @@ Item.find_or_initialize_by(name: "some faded cerulean leathers").tap do |item|
   item.update!(
     weight: 8,
     noun: "leather",
+    material: "leather",
   )
 end
 
@@ -106,6 +108,7 @@ Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
   item.update!(
     weight: 8,
     noun: "lance",
+    material: "mithril",
   )
 end
 
@@ -122,6 +125,7 @@ Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
   item.update!(
     weight: 4,
     noun: "runestaff",
+    material: "orase",
     loresong_unlocked: true,
   )
 end
@@ -136,6 +140,7 @@ Item.find_or_initialize_by(name: "embossed mesille aegis").tap do |item|
   )
   item.update!(
     weight: 9,
+    material: "mesille",
     noun: "aegis",
   )
 end
@@ -151,6 +156,7 @@ Item.find_or_initialize_by(name: "silvery imflass arm greaves").tap do |item|
   item.update!(
     weight: 3,
     noun: "greaves",
+    material: "imflass",
     long_description: "some silvery imflass arm greaves inset with angular bluish mithril runes",
   )
 end
@@ -162,6 +168,7 @@ Item.find_or_initialize_by(name: "purple-veined black leather backpack").tap do 
   )
   item.update!(
     noun: "backpack",
+    material: "leather",
     weight: 4,
   )
 end
