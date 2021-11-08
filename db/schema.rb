@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_092257) do
+ActiveRecord::Schema.define(version: 2021_11_07_231445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,25 @@ ActiveRecord::Schema.define(version: 2021_11_07_092257) do
     t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "enhancive_properties", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.string "kind"
+    t.integer "amount"
+    t.integer "minimum_level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_enhancive_properties_on_item_id"
+  end
+
+  create_table "enhancives", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.boolean "persists"
+    t.boolean "rechargeable"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_enhancives_on_item_id"
   end
 
   create_table "item_properties", force: :cascade do |t|
@@ -132,6 +151,8 @@ ActiveRecord::Schema.define(version: 2021_11_07_092257) do
 
   add_foreign_key "armors", "armor_bases", column: "armor_base_id"
   add_foreign_key "armors", "item_properties"
+  add_foreign_key "enhancive_properties", "items"
+  add_foreign_key "enhancives", "items"
   add_foreign_key "resistances", "items"
   add_foreign_key "weapons", "weapon_bases", column: "weapon_base_id"
 end

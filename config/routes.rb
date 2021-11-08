@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :enhancives
   resources :resistances
   resources :basic_items
   resources :armor_accessories

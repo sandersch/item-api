@@ -77,6 +77,14 @@ Item.find_or_initialize_by(name: "some faded cerulean leathers").tap do |item|
     r.find_or_initialize_by(kind: "crush").amount = 20
     r.find_or_initialize_by(kind: "acid").amount  = 10
   end
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "max_spirit").update(amount: 1, minimum_level: 45)
+    ep.find_or_initialize_by(kind: "spirit_recovery").amount = 1
+  end
   item.update!(
     weight: 8,
     noun: "leather",
