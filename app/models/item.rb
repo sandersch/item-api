@@ -3,4 +3,5 @@ class Item < ApplicationRecord
   has_many :resistances
   has_one :enhancive
   has_many :enhancive_properties
+  has_one :bane
 end

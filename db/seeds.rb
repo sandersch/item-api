@@ -105,6 +105,10 @@ Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
     forge_quality: "perfect",
     sanctify: 5,
   )
+  item.bane ||= item.build_bane(
+    against: "undead",
+    property: ItemProperty.new(effect: "bonus", kind: "offensive", amount: 10),
+  )
   item.update!(
     weight: 8,
     noun: "lance",

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_08_042354) do
+ActiveRecord::Schema.define(version: 2021_11_08_043312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 2021_11_08_042354) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["armor_base_id"], name: "index_armors_on_armor_base_id"
     t.index ["item_property_id"], name: "index_armors_on_item_property_id"
+  end
+
+  create_table "banes", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.string "against"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_banes_on_item_id"
   end
 
   create_table "basic_items", force: :cascade do |t|
@@ -152,6 +160,7 @@ ActiveRecord::Schema.define(version: 2021_11_08_042354) do
 
   add_foreign_key "armors", "armor_bases", column: "armor_base_id"
   add_foreign_key "armors", "item_properties"
+  add_foreign_key "banes", "items"
   add_foreign_key "enhancive_properties", "items"
   add_foreign_key "enhancives", "items"
   add_foreign_key "resistances", "items"
