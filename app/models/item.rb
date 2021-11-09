@@ -4,4 +4,5 @@ class Item < ApplicationRecord
   has_one :enhancive
   has_many :enhancive_properties
   has_one :bane
+  has_one :imbed
 end

@@ -176,3 +176,26 @@ Item.find_or_initialize_by(name: "purple-veined black leather backpack").tap do 
     weight: 4,
   )
 end
+
+Item.find_or_initialize_by(name: "deathstone studded ora armband").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "arm",
+    kind: "jewelry",
+  )
+  item.imbed ||= item.build_imbed(
+    spell_number: 1750,
+    activator: "tap",
+    persists: true,
+    player_rechargeable: true,
+    empowerable: true,
+    charges: 6,
+    max_charges: 31,
+  )
+  item.update!(
+    noun: "armbard",
+    material: "ora",
+    weight: 0,
+
+  )
+end
