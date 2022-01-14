@@ -3,14 +3,16 @@ class ArmorController < ApplicationController
 
   # GET /armors
   def index
-    @armors = Armor.all
+    @armors = detailed_armors
 
-    render json: @armors
+    render jsonapi: @armors,
+           class: { "Item": SerializableArmor }
   end
 
   # GET /armors/1
   def show
-    render json: @armor
+    render jsonapi: @armor,
+           class: { "Item": SerializableArmor }
   end
 
   # POST /armors
@@ -41,11 +43,22 @@ class ArmorController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_armor
-      @armor = Armor.find(params[:id])
+      @armor = detailed_armors.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def armor_params
       params.fetch(:armor, {})
+    end
+
+    def detailed_armors
+      @armors = Item.where(details_type: "Armor")
+        .includes(
+          { bane: :property },
+          :enhancive,
+          :enhancive_properties,
+          :resistances,
+          details: :item_property
+        )
     end
 end
