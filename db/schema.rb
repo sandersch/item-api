@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(version: 2021_11_09_080851) do
 
   create_table "armor_accessories", force: :cascade do |t|
     t.string "kind"
+    t.integer "enchant"
+    t.integer "ensorcell"
+    t.integer "sanctify"
     t.integer "critical_services"
     t.integer "damage_services"
     t.datetime "created_at", precision: 6, null: false

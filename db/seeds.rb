@@ -124,8 +124,8 @@ Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
     ensorcell: 4,
   ).tap do |d| 
   end
-  item.details.build_item_property(effect: "flare", kind: "acuity", amount: 7)
   item.details.save!
+  item.details.create_item_property(effect: "flare", kind: "acuity", amount: 7)
   item.update!(
     weight: 4,
     noun: "runestaff",
