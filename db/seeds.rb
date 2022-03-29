@@ -193,7 +193,7 @@ Item.find_or_initialize_by(name: "deathstone studded ora armband").tap do |item|
     max_charges: 31,
   )
   item.update!(
-    noun: "armbard",
+    noun: "armband",
     material: "ora",
     weight: 0,
 
