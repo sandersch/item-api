@@ -114,6 +114,7 @@ Item.find_or_initialize_by(name: "perfect mithril lance").tap do |item|
     noun: "lance",
     material: "mithril",
   )
+  #item.script ||= ItemScript.create!(name: "Bubble Flares")
 end
 
 Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
@@ -125,7 +126,9 @@ Item.find_or_initialize_by(name: "marred runestaff").tap do |item|
   ).tap do |d| 
   end
   item.details.save!
-  item.details.create_item_property(effect: "flare", kind: "acuity", amount: 7)
+  unless item.details.item_property
+    item.details.create_item_property(effect: "flare", kind: "acuity", amount: 7)
+  end
   item.update!(
     weight: 4,
     noun: "runestaff",
@@ -168,13 +171,16 @@ end
 Item.find_or_initialize_by(name: "purple-veined black leather backpack").tap do |item|
   klass = BasicItem
   item.details ||= klass.new(
-    capacity: 200
+    worn: "back",
+    capacity: 200,
+    kind: "container",
   )
   item.update!(
     noun: "backpack",
     material: "leather",
     weight: 4,
   )
+  #item.script ||= ItemScript.create!(name: "Black Swan Weight Reduction")
 end
 
 Item.find_or_initialize_by(name: "deathstone studded ora armband").tap do |item|
@@ -196,6 +202,311 @@ Item.find_or_initialize_by(name: "deathstone studded ora armband").tap do |item|
     noun: "armband",
     material: "ora",
     weight: 0,
-
   )
+end
+
+Item.find_or_initialize_by(name: "bone-inlaid ora headband").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "head",
+    kind: "jewelry",
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Spell Aiming Bonus").update(amount: 5, minimum_level: 15)
+    ep.find_or_initialize_by(kind: "Intuition Bonus").update(amount: 1, minimum_level: 3)
+    ep.find_or_initialize_by(kind: "First Aid Bonus").update(amount: 1, minimum_level: 1)
+  end
+  item.update!(
+    noun: "headband",
+    material: "ora",
+    weight: 0,
+  )
+end
+
+Item.find_or_initialize_by(name: "long vaalin-hued gown").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "torso",
+    kind: "clothing",
+    capacity: 4,
+  )
+  item.update!(
+    noun: "gown",
+    material: "vaalin",
+    weight: 3,
+    long_description: "long vaalin-hued gown with a single sweeping bell sleeve",
+  )
+  #item.script ||= ItemScript.create!(name: "Metallic Gown")
+end
+
+Item.find_or_initialize_by(name: "some violet feystone-pipped dice").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "no",
+    kind: "fluff",
+  )
+  item.update!(
+    noun: "dice",
+    weight: 0,
+  )
+  #item.script ||= ItemScript.create!(name: "Rollable Dice: 3d6")
+end
+
+Item.find_or_initialize_by(name: "dove-colored leather sheath").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "waist",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "sheath",
+    weight: 0,
+    long_description: "dove-colored leather sheath inlaid with brilliant lilac glimaerstone",
+  )
+  #item.script ||= ItemScript.create!(name: "Warrior Sheath")
+end
+
+Item.find_or_initialize_by(name: "enormous tanned frogskin purse").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "shoulder",
+    kind: "container",
+    capacity: 100,
+  )
+  item.update!(
+    noun: "purse",
+    weight: 0,
+    long_description: "enormous tanned frogskin purse crafted from the body of a bloated albino bullfrog",
+  )
+end
+
+Item.find_or_initialize_by(name: "hooded ash grey faille cloak").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "cloak",
+    kind: "container",
+    capacity: 100,
+  )
+  item.update!(
+    noun: "cloak",
+    weight: 5,
+    long_description: "hooded ash grey faille cloak patterned with a amber yellow slit-pupiled eye motif",
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Spell Aiming Bonus").update(amount: 2)
+    ep.find_or_initialize_by(kind: "Mana Recovery").update(amount: 2)
+  end
+end
+
+Item.find_or_initialize_by(name: "flowing indigo linen skirt").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "legs",
+    kind: "clothing",
+    capacity: 0,
+  )
+  item.update!(
+    noun: "skirt",
+    weight: 0,
+    long_description: "flowing indigo linen skirt embroidered with silver whorls",
+  )
+  #item.script ||= ItemScript.create!(name: "Rainbow Wear")
+end
+
+Item.find_or_initialize_by(name: "dreamstone inset platinum bracer").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "wrist",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "bracer",
+    weight: 0,
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Brawling Bonus").update(amount: 2, minimum_level: 10)
+  end
+  item.imbed ||= item.build_imbed(
+    spell_number: 606,
+    activator: "rub",
+    persists: true,
+    player_rechargeable: true,
+    empowerable: false,
+    charges: 8,
+    max_charges: 40,
+  )
+end
+
+Item.find_or_initialize_by(name: "engraved sterling silver band ring").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "finger",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "ring",
+    weight: 0,
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: false,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Dexterity Bonus").update(amount: 2, minimum_level: 11)
+    ep.find_or_initialize_by(kind: "Agility Bonus").update(amount: 2, minimum_level: 11)
+  end
+  item.imbed ||= item.build_imbed(
+    spell_number: 602,
+    activator: "rub",
+    persists: true,
+    player_rechargeable: true,
+    empowerable: false,
+    charges: 11,
+    max_charges: 40,
+  )
+end
+
+Item.find_or_initialize_by(name: "pair of black hobnailed boots").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "feet",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "boots",
+    weight: 2,
+  )
+end
+
+Item.find_or_initialize_by(name: "chased ora talisman").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "neck",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "talisman",
+    weight: 0,
+    loresong_unlocked: true,
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Spell Aiming Bonus").update(amount: 5, minimum_level: 15)
+  end
+  item.imbed ||= item.build_imbed(
+    spell_number: 313,
+    activator: "tap",
+    persists: true,
+    player_rechargeable: true,
+    empowerable: false,
+    charges: 0,
+    max_charges: 40,
+  )
+end
+
+Item.find_or_initialize_by(name: "pristine white medicine kit").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "kit",
+    kind: "container",
+    capacity: 60,
+  )
+  item.update!(
+    noun: "kit",
+    weight: 2,
+    long_description: "pristine white medicine kit clasped with a vaalin-bound violet feystone",
+  )
+  # item.script = "Auto-Bundling Herb Pouch"
+end
+
+Item.find_or_initialize_by(name: "engraved mithril earcuff").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "earlobe",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "earcuff",
+    weight: 0,
+    loresong_unlocked: true,
+  )
+  item.enhancive ||= Enhancive.new(
+    persists: false,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Blunt Weapons Bonus").update(amount: 6, minimum_level: 21)
+    ep.find_or_initialize_by(kind: "Dexterity Base").update(amount: 5, minimum_level: 15)
+  end
+end
+
+Item.find_or_initialize_by(name: "some deathstone earrings").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "earlobes",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "earrings",
+    weight: 1,
+    loresong_unlocked: false,
+  )
+  item.imbed ||= item.build_imbed(
+    spell_number: 117,
+    activator: "rub",
+    persists: true,
+    player_rechargeable: true,
+    empowerable: false,
+    charges: 40,
+    max_charges: 40,
+  )
+end
+
+Item.find_or_initialize_by(name: "nacre and ghezyte dolphin anklet").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "ankle",
+    kind: "jewelry",
+  )
+  item.update!(
+    noun: "anklet",
+    weight: 1,
+    loresong_unlocked: false,
+    material: "ghezyte",
+    long_description: "nacre and ghezyte dolphin bracelet with tiny web-spun sea blue tidal pearls",
+  )
+
+  # item.script = "Caligos Isle Quest Jewelry"
+end
+
+Item.find_or_initialize_by(name: "weathered leather harness").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "front",
+    kind: "clothing",
+    capacity: 100,
+  )
+  item.update!(
+    noun: "harness",
+    weight: 2,
+    loresong_unlocked: false,
+    long_description: "weathered leather harness made from a multitude of straps",
+  )
+
+  # item.script = "Pirate Harness"
 end

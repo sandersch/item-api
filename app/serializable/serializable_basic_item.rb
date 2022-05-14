@@ -10,6 +10,12 @@ class SerializableBasicItem < JSONAPI::Serializable::Resource
   attribute :kind do
     @object.details.kind
   end
+  attribute :worn do
+    @object.details.worn
+  end
+  attribute :capacity, if: Proc.new { @object.details&.capacity } do
+    @object.details.capacity.to_i
+  end
 
   attribute :loresong_unlocked
   attribute :enhancive, if: Proc.new { @object.enhancive } do
