@@ -259,7 +259,7 @@ end
 Item.find_or_initialize_by(name: "dove-colored leather sheath").tap do |item|
   klass = BasicItem
   item.details ||= klass.new(
-    worn: "waist",
+    worn: "waist (as belt)",
     kind: "clothing",
   )
   item.update!(
@@ -422,7 +422,7 @@ end
 Item.find_or_initialize_by(name: "pristine white medicine kit").tap do |item|
   klass = BasicItem
   item.details ||= klass.new(
-    worn: "kit",
+    worn: "hip (on belt)",
     kind: "container",
     capacity: 60,
   )
@@ -509,4 +509,91 @@ Item.find_or_initialize_by(name: "weathered leather harness").tap do |item|
   )
 
   # item.script = "Pirate Harness"
+end
+
+Item.find_or_initialize_by(name: "pair of black mithglin gauntlets").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "hands",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "gloves",
+    weight: 1,
+    loresong_unlocked: false,
+    long_description: "pair of black mithglin gauntlets swirled with blue streaks",
+  )
+
+  # item.script = "Bazzelwyn Gloves" # https://gswiki.play.net/Bazzelwyn_gloves
+end
+
+Item.find_or_initialize_by(name: "some holy socks").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "sock",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "socks",
+    weight: 1,
+    loresong_unlocked: true,
+  )
+
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Cleric Spell Ranks").update(amount: 50)
+  end
+end
+
+Item.find_or_initialize_by(name: "spiral-shaped silver haircomb").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "hair",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "haircomb",
+    weight: 1,
+    loresong_unlocked: false,
+    long_description: "spiral-shaped silver haircomb with an iridescent sheen",
+  )
+
+  # item.script = "Fully Unlocked Veola Barrette" # https://gswiki.play.net/Veola_hair_accessory
+end
+
+Item.find_or_initialize_by(name: "stained off-white cotton gambeson").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "undershirt",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "gambeson",
+    weight: 2,
+    loresong_unlocked: false,
+  )
+
+  item.enhancive ||= Enhancive.new(
+    persists: true,
+    rechargeable: true
+  )
+  item.enhancive_properties.tap do |ep|
+    ep.find_or_initialize_by(kind: "Armor Use Bonus").update(amount: 10)
+  end
+end
+
+Item.find_or_initialize_by(name: "some faded green leggings").tap do |item|
+  klass = BasicItem
+  item.details ||= klass.new(
+    worn: "leggings",
+    kind: "clothing",
+  )
+  item.update!(
+    noun: "leggings",
+    weight: 2,
+    loresong_unlocked: false,
+  )
 end
